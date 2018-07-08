@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../index.css';
-import SpeechInput from './SpeechInput';
 
 class ChatScreen extends Component {
   constructor(props) {
@@ -14,11 +14,15 @@ class ChatScreen extends Component {
     return (
       <div>
         <div className="chat-wrapper">
-          {this.state.value}
+          <span>{this.props.text.events}</span>
         </div>
       </div>
     );
   }
 }
 
-export default ChatScreen;
+const mapStateToProps = state => ({
+  text: state.text,
+});
+
+export default connect(mapStateToProps, null)(ChatScreen);
