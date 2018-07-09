@@ -18,6 +18,11 @@ class SpeechInput extends Component {
       console.log('text from client', data);
       this.props.textToStore(data);
     });
+
+    this.socket.on('GET_SPEECH_TEXT', data => {
+      this.setState({ value: data });
+      console.log('text from speech', data);
+    });
   }
 
   handleChange = (e) => {
@@ -28,8 +33,16 @@ class SpeechInput extends Component {
     this.socket.emit('SEND_TEXT_MESSAGE', {  // send text to the server
         message: this.state.value,
       });
-    // this.props.textToStore(this.state.value);
     this.setState({ value: '' });
+  };
+
+  handleMicClick = () => {
+    fetch('http://localhost:5000/')
+    .then(response => console.log(response.json));
+  };
+
+  handleGetSpeech = () => {
+    this.socket.emit('GET_SPEECH_TEXT', {});
   };
 
   render () {
@@ -42,8 +55,15 @@ class SpeechInput extends Component {
           style={{ minHeight: 100, marginTop: 50 }}
           onChange={(e) => this.handleChange(e)} />
           <div className="speech-button">
-            <Button icon style={{ backgroundColor: 'white' }}>
+            <Button icon
+              style={{ backgroundColor: 'white' }}
+              onClick={() => this.handleMicClick()}>
               <Icon name="microphone" size ="huge"/>
+            </Button>
+            <Button icon
+              style={{ backgroundColor: 'white' }}
+              onClick={() => this.handleGetSpeech()}>
+              <Icon name="translate" size ="huge"/>
             </Button>
             <Button
               animated
