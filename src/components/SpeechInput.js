@@ -16,7 +16,6 @@ class SpeechInput extends Component {
 
     this.socket.on('SEND_MESSAGE_TOCLIENT', data => {  //get text from input but coming from server
       console.log('text from client', data);
-
       this.props.textToStore(data);
     });
 
