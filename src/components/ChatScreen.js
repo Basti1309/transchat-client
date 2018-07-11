@@ -18,7 +18,7 @@ class ChatScreen extends Component {
         <div className="chat-wrapper">
           {this.props.messages.map(message => {
             return (
-              <div key={uuidv4()}>{message}</div>
+              <div className="messages" key={uuidv4()}>{message}</div>
             );
           })}
         </div>
