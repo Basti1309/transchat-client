@@ -11,7 +11,8 @@
     "redux": "^4.0.0",
     "semantic-ui-css": "^2.3.2",
     "semantic-ui-react": "^0.81.3",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.1.1",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

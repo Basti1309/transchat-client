@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import testReducer from './testReducer';
+import textReducer from './textReducer';
 
 export default combineReducers({
-  text: testReducer,
+  messages: textReducer,
 });

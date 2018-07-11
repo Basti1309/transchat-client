@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../index.css';
+const uuidv4= require('uuid/v4');
 
 class ChatScreen extends Component {
   constructor(props) {
@@ -11,10 +12,15 @@ class ChatScreen extends Component {
   }
 
   render() {
+    console.log(this.props.messages);
     return (
       <div>
         <div className="chat-wrapper">
-          <span>{this.props.text.events}</span>
+          {this.props.messages.map(message => {
+            return (
+              <div className="messages" key={uuidv4()}>{message}</div>
+            );
+          })}
         </div>
       </div>
     );
@@ -22,7 +28,7 @@ class ChatScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  text: state.text,
+  messages: state.messages,
 });
 
 export default connect(mapStateToProps, null)(ChatScreen);
