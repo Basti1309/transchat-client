@@ -16,3 +16,14 @@ body {
   margin-top: 40px;
   background-color: #ffffff40;
 }
+
+.messages {
+  display: flex;
+  max-width: 50%;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #3D9970;
+  border-radius: 14px;
+  border: 1px;
+}
