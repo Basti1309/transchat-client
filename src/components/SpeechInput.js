@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, TextArea } from 'semantic-ui-react';
-import { textToStore } from '../actions';
+import { textToStore, startMicRecord } from '../actions';
 import { Button, Icon } from 'semantic-ui-react';
 import socketIOClient from 'socket.io-client';
 
@@ -42,8 +42,10 @@ class SpeechInput extends Component {
   };
 
   handleMicClick = () => {
-    fetch('http://localhost:5000/')
-    .then(response => console.log(response.json));
+    this.props.startMicRecord();
+    //
+    // fetch('http://localhost:5000/')
+    // .then(response => console.log(response.json));
   };
 
   handleGetSpeech = () => {
@@ -88,6 +90,7 @@ class SpeechInput extends Component {
 
 const mapDispatchToProps = dispatch => ({
   textToStore: (text) => dispatch(textToStore(text)),
+  startMicRecord: () => dispatch(startMicRecord()),
 });
 
 export default connect(null, mapDispatchToProps)(SpeechInput);

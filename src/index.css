@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Press Start 2P";
 }
 
 .chat-wrapper {
@@ -30,7 +32,7 @@ body {
 
 .messages-other {
   display: inline-block;
-  max-width: 30%;
+  max-width: 40%;
   padding: 20px;
   margin-bottom: 10px;
   background-color: yellow;

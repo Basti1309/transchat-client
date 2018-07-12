@@ -8,12 +8,10 @@ class ChatScreen extends Component {
   render() {
     const messages = this.props.messages.map(message => {
           return (
-      
             <Message
               key={uuidv4()}
               messageInfo={message}
             />
-
           );
         });
     return (

@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
-import { Button, Dropdown, Menu } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react';
 
-export default class MenuExampleSizeHuge extends Component {
-  state = { activeItem: 'home' };
+export default class Header extends Component {
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (lng) =>
+
+    console.log('item selected');;
 
   render() {
-    const { activeItem } = this.state;
+    // const { activeItem } = this.state;
 
     return (
       <Menu size='huge'>
-        <Menu.Item name='Transchat' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        {/* <Menu.Item name='Transchat' active={activeItem === 'home'} onClick={this.handleItemClick} /> */}
         <Menu.Item
           name='History'
-          active={activeItem === 'messages'}
+          // active={activeItem === 'messages'}
           onClick={this.handleItemClick}
         />
 
-        <Menu.Menu position='right'>
+        <Menu.Menu icon='labeled' position='right'>
           <Dropdown item text='Language'>
             <Dropdown.Menu>
-              <Dropdown.Item>English</Dropdown.Item>
-              <Dropdown.Item>Russian</Dropdown.Item>
-              <Dropdown.Item>Spanish</Dropdown.Item>
+              <Dropdown.Item
+                onClick={ () => this.handleItemClick('en')}
+                >English</Dropdown.Item>
+              <Dropdown.Item
+                onClick={ () => this.handleItemClick('tr')}
+                >Turkish</Dropdown.Item>
+              <Dropdown.Item
+                onClick={ () => this.handleItemClick('es')}
+                >Spanish</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
@@ -35,3 +43,9 @@ export default class MenuExampleSizeHuge extends Component {
     );
   }
 }
+
+// const mapDispatchToProps = dispatch => ({
+//   languageCode: (code) => dispatch(languageCode(code)),
+// });
+//
+// export default connect(null, mapDispatchToProps)(Header);
