@@ -6,7 +6,7 @@ const uuidv4 = require('uuid/v4');
 
 class ChatScreen extends Component {
   render() {
-    console.log('hata gelen yer', this.props.messages);
+    console.log('hata gelen yer', this.props.userMessages);
     const messages = this.props.messages.messages.map(message => {
           return (
             <Message
@@ -24,7 +24,7 @@ class ChatScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  messages: state.messages,
+  messages: state.userMessages,
 });
 
 export default connect(mapStateToProps, null)(ChatScreen);

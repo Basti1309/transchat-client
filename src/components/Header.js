@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { languageCode } from '../actions';
 import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react';
 
-export default class Header extends Component {
+class Header extends Component {
+  state = { activeItem: 'home' };
 
-  handleItemClick = (lng) =>
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
-    console.log('item selected');;
+  handleLangClick = lng => {
+    this.props.languageCode(lng);
+  };
 
   render() {
-    // const { activeItem } = this.state;
+    const { activeItem } = this.state;
 
     return (
       <Menu size='huge'>
-        {/* <Menu.Item name='Transchat' active={activeItem === 'home'} onClick={this.handleItemClick} /> */}
+        <Menu.Item
+          name='Transchat'
+          active={activeItem === 'home'}
+          onClick={this.handleItemClick} />
         <Menu.Item
           name='History'
-          // active={activeItem === 'messages'}
+          active={activeItem === 'messages'}
           onClick={this.handleItemClick}
         />
 
@@ -24,13 +31,13 @@ export default class Header extends Component {
           <Dropdown item text='Language'>
             <Dropdown.Menu>
               <Dropdown.Item
-                onClick={ () => this.handleItemClick('en')}
+                onClick={ () => this.handleLangClick('en-US')}
                 >English</Dropdown.Item>
               <Dropdown.Item
-                onClick={ () => this.handleItemClick('tr')}
+                onClick={ () => this.handleLangClick('tr')}
                 >Turkish</Dropdown.Item>
               <Dropdown.Item
-                onClick={ () => this.handleItemClick('es')}
+                onClick={ () => this.handleLangClick('es')}
                 >Spanish</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -44,8 +51,8 @@ export default class Header extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   languageCode: (code) => dispatch(languageCode(code)),
-// });
-//
-// export default connect(null, mapDispatchToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  languageCode: lang => dispatch(languageCode(lang)),
+});
+
+export default connect(null, mapDispatchToProps)(Header);
