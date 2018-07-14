@@ -6,7 +6,8 @@ const uuidv4 = require('uuid/v4');
 
 class ChatScreen extends Component {
   render() {
-    const messages = this.props.messages.map(message => {
+    console.log('hata gelen yer', this.props.messages);
+    const messages = this.props.messages.messages.map(message => {
           return (
             <Message
               key={uuidv4()}

@@ -43,9 +43,6 @@ class SpeechInput extends Component {
 
   handleMicClick = () => {
     this.props.startMicRecord();
-    //
-    // fetch('http://localhost:5000/')
-    // .then(response => console.log(response.json));
   };
 
   handleGetSpeech = () => {

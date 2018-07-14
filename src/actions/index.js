@@ -8,7 +8,7 @@ export const textToStore = (data) => ({
 export const startMicRecord = () => ({
   type: 'START_MIC_RECORD',
   [API]: {
-    endpoints: '/',
+    endpoint: '/',
     method: 'GET',
   },
 });
