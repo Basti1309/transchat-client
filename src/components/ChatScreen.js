@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../index.css';
-const uuidv4= require('uuid/v4');
+import Message from './Message';
+const uuidv4 = require('uuid/v4');
 
 class ChatScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-  }
-
   render() {
-    console.log(this.props.messages);
+    console.log('hata gelen yer', this.props.messages);
+    const messages = this.props.messages.messages.map(message => {
+          return (
+            <Message
+              key={uuidv4()}
+              messageInfo={message}
+            />
+          );
+        });
     return (
-      <div>
         <div className="chat-wrapper">
-          {this.props.messages.map(message => {
-            return (
-              <div className="messages" key={uuidv4()}>{message}</div>
-            );
-          })}
+         {messages}
         </div>
-      </div>
     );
   }
 }
