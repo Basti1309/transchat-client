@@ -32,7 +32,6 @@ export const api = store => next => action => {
       type: `${action.type}_REQUEST`,
     });
   } else {
-
     next(action);
   }
 };

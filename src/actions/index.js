@@ -12,3 +12,11 @@ export const startMicRecord = () => ({
     method: 'GET',
   },
 });
+
+export const languageCode = (data) => ({
+  type: 'LANGUAGE_CODE',
+  [API]: {
+    endpoint: `/speechlang?speaker=${data.speakerLang}&translation=${data.translationLang}`,
+    method: 'POST',
+  },
+});
