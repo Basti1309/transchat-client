@@ -4,12 +4,13 @@ import { languageCode } from '../actions';
 import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react';
 
 class Header extends Component {
-  state = { activeItem: 'home' };
+  state = { speakerLang: '',
+            translationLang: '', };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
-  handleLangClick = lng => {
-    this.props.languageCode(lng);
+  handleLangClick = () => {
+    this.props.languageCode(this.state);
   };
 
   render() {
@@ -28,21 +29,38 @@ class Header extends Component {
         />
 
         <Menu.Menu icon='labeled' position='right'>
-          <Dropdown item text='Language'>
+          <Dropdown item text='Speaker Language'>
             <Dropdown.Menu>
               <Dropdown.Item
-                onClick={ () => this.handleLangClick('en-US')}
+                onClick={ () => this.setState({ speakerLang: 'en-US' }, () => console.log('test'))}
                 >English</Dropdown.Item>
               <Dropdown.Item
-                onClick={ () => this.handleLangClick('tr')}
+                onClick={ () => this.setState({ speakerLang: 'tr' }, () => console.log('test'))}
                 >Turkish</Dropdown.Item>
               <Dropdown.Item
-                onClick={ () => this.handleLangClick('es')}
+                onClick={ () => this.setState({ speakerLang: 'es' }, () => console.log('test'))}
+                >Spanish</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown item text='Translation Language'>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                onClick={ () => this.setState({ translationLang: 'en' }, () => console.log('test'))}
+                >English</Dropdown.Item>
+              <Dropdown.Item
+                onClick={ () => this.setState({ translationLang: 'tr' }, () => console.log('test'))}
+                >Turkish</Dropdown.Item>
+              <Dropdown.Item
+                onClick={ () => this.setState({ translationLang: 'es' }, () => console.log('test'))}
                 >Spanish</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
           <Menu.Item>
+            <div>
+             <Button positive
+               onClick={this.handleLangClick}>Set Language</Button>
+           </div>
             <Button primary>Sign Up</Button>
           </Menu.Item>
         </Menu.Menu>

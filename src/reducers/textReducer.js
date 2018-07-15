@@ -1,6 +1,6 @@
 const defaultState = {
   messages: [],
-  speakerLang: '',
+  languageOptions: '',
 };
 
 // TODO: state i array yerine object kaydetmeye dene diger turlu calismayacak
@@ -26,7 +26,7 @@ export default(state = defaultState, action) => {
       return { ...state, changesSpeakerLang: false, };
     case 'LANGUAGE_CODE_SUCCESS':
       return { ...state,
-                speakerLang: action.data,
+                languageOptions: action.data,
                 changesSpeakerLang: true,
               };
     case 'LANGUAGE_CODE_FAILURE':

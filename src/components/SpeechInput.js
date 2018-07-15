@@ -12,6 +12,7 @@ class SpeechInput extends Component {
       value: '',
       socketId: '',
     };
+    this.stateOptions = [{ key: 'AL', value: 'AL', text: 'Alabama' }];
     this.socket = socketIOClient('localhost:5000');
     this.socket.on('connect', () => {
       console.log('SOCKET ID FROM CLIENT', this.setState({ socketId: this.socket.id }));
