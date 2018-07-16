@@ -49,3 +49,7 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.spinner {
+  padding-top: 30px;
+}

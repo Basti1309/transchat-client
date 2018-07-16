@@ -4,6 +4,8 @@ import { Form, TextArea } from 'semantic-ui-react';
 import { textToStore, startMicRecord } from '../actions';
 import { Button, Icon } from 'semantic-ui-react';
 import socketIOClient from 'socket.io-client';
+import { PropagateLoader } from 'react-spinners';
+import '../index.css';
 
 class SpeechInput extends Component {
   constructor (props) {
@@ -11,8 +13,8 @@ class SpeechInput extends Component {
     this.state = {
       value: '',
       socketId: '',
+      loading: false,
     };
-    this.stateOptions = [{ key: 'AL', value: 'AL', text: 'Alabama' }];
     this.socket = socketIOClient('localhost:5000');
     this.socket.on('connect', () => {
       console.log('SOCKET ID FROM CLIENT', this.setState({ socketId: this.socket.id }));
@@ -32,7 +34,7 @@ class SpeechInput extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.target.value }, () => console.log('test'));
   };
 
   handleOnClick = () => {
@@ -44,9 +46,11 @@ class SpeechInput extends Component {
 
   handleMicClick = () => {
     this.props.startMicRecord();
+    this.setState({ loading: true }, () => console.log('test'));
   };
 
   handleGetSpeech = () => {
+    this.state.value ? this.socket.emit('GET_SPEECH_TEXT', { text: this.state.value }) :
     this.socket.emit('GET_SPEECH_TEXT', {});
   };
 
@@ -60,11 +64,19 @@ class SpeechInput extends Component {
           style={{ minHeight: 100, marginTop: 50 }}
           onChange={(e) => this.handleChange(e)} />
           <div className="speech-button">
+
             <Button icon
               style={{ backgroundColor: 'white' }}
               onClick={() => this.handleMicClick()}>
               <Icon name="microphone" size ="huge"/>
             </Button>
+            <div className="spinner">
+            <PropagateLoader
+
+              color={'#FF4136'}
+              loading={this.state.loading}
+            />
+            </div>
             <Button icon
               style={{ backgroundColor: 'white' }}
               onClick={() => this.handleGetSpeech()}>

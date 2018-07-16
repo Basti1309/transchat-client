@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { languageCode } from '../actions';
-import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react';
+import { Button, Dropdown, Dimmer, Menu, Icon, Header, Flag} from 'semantic-ui-react';
+import ReactCountryFlag from 'react-country-flag';
 
-class Header extends Component {
+class MainHeader extends Component {
   state = { speakerLang: '',
             translationLang: '', };
 
@@ -11,10 +12,14 @@ class Header extends Component {
 
   handleLangClick = () => {
     this.props.languageCode(this.state);
+    this.setState({ active: true });
   };
 
+  handleOpen = () => this.setState({ active: true });
+  handleClose = () => this.setState({ active: false });
+
   render() {
-    const { activeItem } = this.state;
+    const { activeItem, active } = this.state;
 
     return (
       <Menu size='huge'>
@@ -22,14 +27,8 @@ class Header extends Component {
           name='Transchat'
           active={activeItem === 'home'}
           onClick={this.handleItemClick} />
-        <Menu.Item
-          name='History'
-          active={activeItem === 'messages'}
-          onClick={this.handleItemClick}
-        />
-
         <Menu.Menu icon='labeled' position='right'>
-          <Dropdown item text='Speaker Language'>
+          <Dropdown item text='Speaking Language'>
             <Dropdown.Menu>
               <Dropdown.Item
                 onClick={ () => this.setState({ speakerLang: 'en-US' }, () => console.log('test'))}
@@ -60,8 +59,22 @@ class Header extends Component {
             <div>
              <Button positive
                onClick={this.handleLangClick}>Set Language</Button>
+               <Dimmer active={active} onClickOutside={this.handleClose} page>
+                <Header as='h2' icon inverted>
+                  <div style = {{ margin: ' 40px' }}>
+                    Speaking Language
+                    <div>
+                    <ReactCountryFlag
+                    code={this.state.speakerLang === 'en-US' ? 'gb' : this.state.speakerLang } svg
+                   />
+                     </div>
+                  </div>
+                  <div style = {{ margin: ' 40px' }}>Translation Language<ReactCountryFlag code={this.state.translationLang === 'en' ? 'gb' : this.state.translationLang} svg /></div>
+
+                  <Header.Subheader>Dimmer sub-header</Header.Subheader>
+                 </Header>
+              </Dimmer>
            </div>
-            <Button primary>Sign Up</Button>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
@@ -73,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
   languageCode: lang => dispatch(languageCode(lang)),
 });
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(MainHeader);
