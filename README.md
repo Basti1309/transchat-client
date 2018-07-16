@@ -46,7 +46,7 @@ Go to the choosen app directory on the CLI then run this command into server fol
 `npm install`
 
 You should create your own google cloud account and authorize the app.
-Visit : https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries and follow the guide for setup.
+<p>Visit : https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries and follow the guide for setup.</p>
 
 Dont` forget to set the environment variable GOOGLE_APPLICATION_CREDENTIALS  to the file path of the JSON file that contains your service account key.
 
