@@ -54,10 +54,11 @@ Dont` forget to set the environment variable GOOGLE_APPLICATION_CREDENTIALS  to 
 
 * **React** - Front end library for building user interfaces
 * **Redux** - Storage to share data inside the app
-* **Semantic-UI** - React components that implement React Semantic-UI.
+* **Socket IO** - enables real-time bidirectional event-based communication.
 * **Google Cloud Speech to Text API** - Enables to convert audio to text by applying  neural network models 
 * **Google Translation API** -provides a  programmatic interface for translating an  string into supported language using Neural Machine Translation.
 * **Node / Express**- Back end web framework
+* **Semantic-UI** - React components that implement React Semantic-UI.
 
 
 
