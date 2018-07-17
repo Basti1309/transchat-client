@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { languageCode } from '../actions';
 import { Button, Dropdown, Dimmer, Menu, Icon, Header, Flag} from 'semantic-ui-react';
 import ReactCountryFlag from 'react-country-flag';
+import '../index.css';
 
 class MainHeader extends Component {
   state = { speakerLang: '',
@@ -61,15 +62,17 @@ class MainHeader extends Component {
                onClick={this.handleLangClick}>Set Language</Button>
                <Dimmer active={active} onClickOutside={this.handleClose} page>
                 <Header as='h2' icon inverted>
-                  <div style = {{ margin: ' 40px' }}>
-                    Speaking Language
-                    <div>
-                    <ReactCountryFlag
-                    code={this.state.speakerLang === 'en-US' ? 'gb' : this.state.speakerLang } svg
-                   />
-                     </div>
+                  <p className='dimmer-header'>SPEAKER & TRANSLATION LANGUAGE SETTINGS</p>
+                  <div className="dimmer">
+                    <div className="dimmer-first">
+                      <p className="dimmer-p">Speech Language</p>
+                      <ReactCountryFlag code={this.state.speakerLang === 'en-US' ? 'gb' : this.state.speakerLang } svg/>
+                    </div>
+                    <div className="dimmer-first">
+                      <p className="dimmer-p">Translation Language</p>
+                      <ReactCountryFlag code={this.state.translationLang === 'en' ? 'gb' : this.state.translationLang} svg />
+                    </div>
                   </div>
-                  <div style = {{ margin: ' 40px' }}>Translation Language<ReactCountryFlag code={this.state.translationLang === 'en' ? 'gb' : this.state.translationLang} svg /></div>
 
                   <Header.Subheader>Dimmer sub-header</Header.Subheader>
                  </Header>

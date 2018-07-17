@@ -53,3 +53,25 @@ body {
 .spinner {
   padding-top: 30px;
 }
+
+.dimmer {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.dimmer-first {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.dimmer-p {
+  margin-right: 50px;
+}
+
+.dimmer-header {
+margin-bottom: 80px;
+}
