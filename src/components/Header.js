@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { languageCode } from '../actions';
-import { Button, Dropdown, Menu, Icon } from 'semantic-ui-react';
+import { Button, Dropdown, Dimmer, Menu, Icon, Header,
+  Flag, Divider, Grid, Image } from 'semantic-ui-react';
+import ReactCountryFlag from 'react-country-flag';
+import '../index.css';
 
-class Header extends Component {
+class MainHeader extends Component {
   state = { speakerLang: '',
             translationLang: '', };
 
@@ -11,10 +14,14 @@ class Header extends Component {
 
   handleLangClick = () => {
     this.props.languageCode(this.state);
+    this.setState({ active: true });
   };
 
+  handleOpen = () => this.setState({ active: true });
+  handleClose = () => this.setState({ active: false });
+
   render() {
-    const { activeItem } = this.state;
+    const { activeItem, active } = this.state;
 
     return (
       <Menu size='huge'>
@@ -22,14 +29,21 @@ class Header extends Component {
           name='Transchat'
           active={activeItem === 'home'}
           onClick={this.handleItemClick} />
-        <Menu.Item
-          name='History'
-          active={activeItem === 'messages'}
-          onClick={this.handleItemClick}
-        />
+
 
         <Menu.Menu icon='labeled' position='right'>
-          <Dropdown item text='Speaker Language'>
+          <div className="header-flag">
+            <div className="each-header-flag">
+              <p className="flag-p">Speaker Language:</p>
+              <ReactCountryFlag code={this.state.speakerLang === 'en-US' ? 'gb' : this.state.speakerLang } svg/>
+            </div>
+            <div className="each-header-flag">
+              <p className="flag-p">Translation Language:</p>
+              <ReactCountryFlag code={this.state.translationLang === 'en' ? 'gb' : this.state.translationLang} svg />
+            </div>
+          </div>
+
+          <Dropdown item text='Select Speaker'>
             <Dropdown.Menu>
               <Dropdown.Item
                 onClick={ () => this.setState({ speakerLang: 'en-US' }, () => console.log('test'))}
@@ -42,7 +56,7 @@ class Header extends Component {
                 >Spanish</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Dropdown item text='Translation Language'>
+          <Dropdown item text='Select Translation'>
             <Dropdown.Menu>
               <Dropdown.Item
                 onClick={ () => this.setState({ translationLang: 'en' }, () => console.log('test'))}
@@ -60,8 +74,40 @@ class Header extends Component {
             <div>
              <Button positive
                onClick={this.handleLangClick}>Set Language</Button>
+               <Dimmer active={active} onClickOutside={this.handleClose} page>
+                <Header as='h2' icon inverted>
+                  <p className='dimmer-header'>SPEAKER & TRANSLATION LANGUAGE SETTINGS</p>
+                  Transchat recognize your speech  and translate to target language as a text.
+                  <Divider inverted />
+                  <div className="dimmer">
+                    <div className="dimmer-first">
+                      <div className="dimmer-icon"><Icon name='microphone'/></div>
+                      <p className="dimmer-p">Speech Language</p>
+                      <ReactCountryFlag code={this.state.speakerLang === 'en-US' ? 'gb' : this.state.speakerLang } svg/>
+                    </div>
+                    <div className="dimmer-first">
+                      <div className="dimmer-icon-translate"><Icon name='translate'/></div>
+                      <p className="dimmer-p">Translation Language</p>
+                      <ReactCountryFlag code={this.state.translationLang === 'en' ? 'gb' : this.state.translationLang} svg />
+                    </div>
+                  </div>
+                  <div className="logos">
+                  <Grid relaxed='very' columns={3}>
+                    <Grid.Column>
+                      <Image src='https://cloud.google.com/images/products/speech/speech-api-lead.png'/>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Image src='https://resources-dot-atlasnet-eu.appspot.com/icons/google-cloud/translate-api-128.png'/>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <Image src='https://googlecloudtools.gallerycdn.vsassets.io/extensions/googlecloudtools/googlecloudplatformextensionforvisualstudio/1.4.0.0/1529444896124/223917/8/thumbnail.png'/>
+                    </Grid.Column>
+                  </Grid>
+                  </div>
+                  <Header.Subheader>Powered by Google Cloud Platform</Header.Subheader>
+                 </Header>
+              </Dimmer>
            </div>
-            <Button primary>Sign Up</Button>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
@@ -73,4 +119,4 @@ const mapDispatchToProps = dispatch => ({
   languageCode: lang => dispatch(languageCode(lang)),
 });
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(MainHeader);
