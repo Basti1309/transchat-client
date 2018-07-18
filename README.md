@@ -10,8 +10,10 @@ It can process real-time streaming using Google’s machine learning technology,
 
 ## Getting Started
 
-<div align="center">
- 
+<div align="center" float="right">
+  <img src="https://preview.ibb.co/e1ngMy/Screen_Shot_2018_07_18_at_17_13_17.png" height="350" >
+ <hr>
+  <img src="https://preview.ibb.co/hsUaEJ/Screen_Shot_2018_07_18_at_17_04_19.png" height="350" >
  </div>
 
 <hr>
