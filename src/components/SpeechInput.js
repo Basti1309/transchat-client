@@ -39,7 +39,7 @@ class SpeechInput extends Component {
 
   handleOnClick = () => {
     this.socket.emit('SEND_TEXT_MESSAGE', {  // send text to the server
-        text: this.state.value,
+        text: /=>(.*)/gm.exec(this.state.value)[1],
       });
     this.setState({ value: '' });
   };
@@ -64,7 +64,6 @@ class SpeechInput extends Component {
           style={{ minHeight: 100, marginTop: 50 }}
           onChange={(e) => this.handleChange(e)} />
           <div className="speech-button">
-
             <Button icon
               style={{ backgroundColor: 'white' }}
               onClick={() => this.handleMicClick()}>
@@ -72,7 +71,6 @@ class SpeechInput extends Component {
             </Button>
             <div className="spinner">
             <PropagateLoader
-
               color={'#FF4136'}
               loading={this.state.loading}
             />
