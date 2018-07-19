@@ -2,7 +2,6 @@ export const API = Symbol('API');
 export const SERVER_BASE_URL = 'http://localhost:5000';
 
 export const api = store => next => action => {
-
   if (action[API]) {
     const {
       endpoint,

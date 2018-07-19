@@ -3,8 +3,6 @@ const defaultState = {
   languageOptions: '',
 };
 
-// TODO: state i array yerine object kaydetmeye dene diger turlu calismayacak
-
 export default(state = defaultState, action) => {
   switch (action.type) {
     case 'TEXT_TO_STORE':

@@ -6,7 +6,6 @@ export default (props) => {
   // Was the message sent by the current user. If yes, add a css class
     const fromMe = props.messageInfo.serverId === props.messageInfo.clientId ?
      'messages' : 'messages-other';
-
     return (
       <div className={`fromMe-${fromMe}`}>
       <div

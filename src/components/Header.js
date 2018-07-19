@@ -29,8 +29,6 @@ class MainHeader extends Component {
           name='Transchat'
           active={activeItem === 'home'}
           onClick={this.handleItemClick} />
-
-
         <Menu.Menu icon='labeled' position='right'>
           <div className="header-flag">
             <div className="each-header-flag">
@@ -42,7 +40,6 @@ class MainHeader extends Component {
               <ReactCountryFlag code={this.state.translationLang === 'en' ? 'gb' : this.state.translationLang} svg />
             </div>
           </div>
-
           <Dropdown item text='Select Speaker'>
             <Dropdown.Menu>
               <Dropdown.Item
@@ -69,7 +66,6 @@ class MainHeader extends Component {
                 >Spanish</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
           <Menu.Item>
             <div>
              <Button positive
