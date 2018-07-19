@@ -5,7 +5,7 @@
 
 ## About
 
-<p>Transchat is a translation based real time chat application for peoples who don`t know each others language.</p>
+<p>Transchat is a translation based real time chat application for user who don`t know each others language.</p>
 <p>Translates user speech to target language as a text.
 It can process real-time streaming using Google’s machine learning technology, recognize 120 languages and translate speech to 150 languages.</p>
 
