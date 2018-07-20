@@ -29,6 +29,13 @@ export default(state = defaultState, action) => {
               };
     case 'LANGUAGE_CODE_FAILURE':
       return { ...state, changesSpeakerFailure: action.error };
+    case 'SOCKET_CONNECTION_RECORD_REQUEST':
+      return { ...state, socketConnection: false };
+    case 'SOCKET_CONNECTION_RECORD_SUCCESS':
+      return { ...state, socketConnection: true,
+      };
+    case 'SOCKET_CONNECTION_RECORD_FAILURE':
+      return { ...state, socketConnectionFailure: action.error };
     default:
       return state;
   }

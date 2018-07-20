@@ -8,7 +8,7 @@ export const textToStore = (data) => ({
 export const startMicRecord = () => ({
   type: 'START_MIC_RECORD',
   [API]: {
-    endpoint: '/',
+    endpoint: '/record',
     method: 'GET',
   },
 });
@@ -18,5 +18,13 @@ export const languageCode = (data) => ({
   [API]: {
     endpoint: `/speechlang?speaker=${data.speakerLang}&translation=${data.translationLang}`,
     method: 'POST',
+  },
+});
+
+export const socketConnect = () => ({
+  type: 'SOCKET_CONNECTION',
+  [API]: {
+    endpoint: '/socketconnect',
+    method: 'GET',
   },
 });
